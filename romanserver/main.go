@@ -20,15 +20,15 @@ func main() {
 			if number == 0 || number > 10 {
 				// If resource is not in the list, send Not Found status
 				w.WriteHeader(http.StatusNotFound)
-				w.Write([]byte("404 - Not Found\n"))
+				w.Write([]byte("404 - Not Found"))
 			} else {
 				fmt.Fprintf(w, "%q", html.EscapeString(romanNumerals.Numerals[number]))
-				fmt.Println()
+
 			}
 		} else {
 			// For all other requests, tell that Client sent a bad request
 			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte("400 - Bad request\n"))
+			w.Write([]byte("400 - Bad reqduest\n"))
 		}
 	})
 	// Create a server and run it on 8000 port
