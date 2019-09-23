@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/olegvn88/gorestful/romanNumerals"
+
 	"html"
 	"net/http"
 	"strconv"
@@ -20,9 +22,10 @@ func main() {
 			if number == 0 || number > 10 {
 				// If resource is not in the list, send Not Found status
 				w.WriteHeader(http.StatusNotFound)
-				w.Write([]byte("404 - Not Found"))
+				w.Write([]byte("404 - Not Found\n"))
 			} else {
-				fmt.Fprintf(w, "%q", html.EscapeString(romanNumerals.Numerals[number]))
+				fmt.Fprintf(w, "%q\n;", html.EscapeString(romanNumerals.Numerals[number]))
+				//fmt.Fprintln(w, html.EscapeString(romanNumerals.Numerals[number]))
 
 			}
 		} else {
@@ -39,4 +42,5 @@ func main() {
 		MaxHeaderBytes: 1 << 20,
 	}
 	s.ListenAndServe()
+
 }
